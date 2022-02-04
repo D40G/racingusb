@@ -4,7 +4,7 @@ When item is moved into players inventory, it will install the racing app. When 
 Dependencies: 
 
 qb-phone
-qb-inventory, aj-invnetory, lj-inventory. (will work for either)
+qb-inventory, aj-inventory, lj-inventory. (will work for either)
 
 EDITS
 
