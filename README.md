@@ -32,40 +32,40 @@ In qb-phone/client/main.lua,
     
     RegisterNetEvent("phone:client:hasUsb")
     AddEventHandler("phone:client:hasUsb", function()
-	     local ped = PlayerPedId()
-	    QBCore.Functions.TriggerCallback('qb-phone:hasRacingUsb', function(hasItems)
-		    if hasItems then
-            TriggerEvent('phone:client:InstallApplication', 'racing')
-        else
-            QBCore.Functions.TriggerCallback('qb-phone:server:GetPhoneData', function(pData)
-                PlayerJob = QBCore.Functions.GetPlayerData().job
-                PhoneData.PlayerData = QBCore.Functions.GetPlayerData()
-                local PhoneMeta = PhoneData.PlayerData.metadata["phone"]
-                PhoneData.MetaData = PhoneMeta
+    	local ped = PlayerPedId()
+	QBCore.Functions.TriggerCallback('qb-phone:hasRacingUsb', function(hasItems)
+		if hasItems then
+            		TriggerEvent('phone:client:InstallApplication', 'racing')
+        	else
+            		QBCore.Functions.TriggerCallback('qb-phone:server:GetPhoneData', function(pData)
+               			PlayerJob = QBCore.Functions.GetPlayerData().job
+                		PhoneData.PlayerData = QBCore.Functions.GetPlayerData()
+                		local PhoneMeta = PhoneData.PlayerData.metadata["phone"]
+                		PhoneData.MetaData = PhoneMeta
         
-                if pData.InstalledApps ~= nil and next(pData.InstalledApps) ~= nil then
-                    for k, v in pairs(pData.InstalledApps) do
-                        TriggerServerEvent('qb-phone:server:RemoveInstallation', v.app)
-                        Config.PhoneApplications['racing'] = nil
-                    end
-                end
-            end)
-		    end
-	    end)
+                		if pData.InstalledApps ~= nil and next(pData.InstalledApps) ~= nil then
+                   			for k, v in pairs(pData.InstalledApps) do
+                        			TriggerServerEvent('qb-phone:server:RemoveInstallation', v.app)
+                        			Config.PhoneApplications['racing'] = nil
+                    			end
+                		end
+           		end)
+	  	end
+	  end)
     end)
     
 Add this snippet to qb-phone/server/main.lua
 
     QBCore.Functions.CreateCallback('qb-phone:hasRacingUsb', function(source, cb)
-      local src = source
-      local Player = QBCore.Functions.GetPlayer(src)
-	    local hasItems = Player.Functions.GetItemByName("racingusb")
+      	local src = source
+     	local Player = QBCore.Functions.GetPlayer(src)
+	local hasItems = Player.Functions.GetItemByName("racingusb")
  
-	    if hasItems then
-          cb(true)
-      else
-          cb(false)
-      end
+	    	if hasItems then
+          		cb(true)
+     		else
+          		cb(false)
+      		end
     end)
     
 Then add this event in your inventory in these places
