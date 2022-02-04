@@ -68,9 +68,6 @@ Add this snippet to qb-phone/server/main.lua
       		end
     end)
     
-Then add this event in your inventory in these places
-
-/// TriggerEvent('phone:client:hasUsb') ///
 
 I use aj-inventory and have edited it quite a bit.
 
